@@ -8,15 +8,15 @@ pipeline {
         }
         stage('Build the Docker image') {
             steps {
-                sh 'sudo docker build -t imagev1/var/lib/jenkins/workspace/DEMO-K8S'
-                sh 'sudo docker tag imagev1 suriyavijayan1126/newimage:latest'
-                sh 'sudo docker tag imagev1 suriyavijayan1126/newimage:${BUILD_NUMBER}'
+                sh 'sudo docker build -t newimage/var/lib/jenkins/workspace/DEMO-K8S'
+                sh 'sudo docker tag newimage suriyavijayan1126/newimage:latest'
+                sh 'sudo docker tag newimage suriyavijayan1126/newimage:${BUILD_NUMBER}'
             }
         }
         stage('Push the Docker image') {
             steps {
-                sh 'sudo docker image push suriyavijayan1126/imagev1:latest'
-                sh 'sudo docker image push suriyavijayan1126/imagev1:${BUILD_NUMBER}'
+                sh 'sudo docker image push suriyavijayan1126/newimage:latest'
+                sh 'sudo docker image push suriyavijayan1126/newimage:${BUILD_NUMBER}'
             }
         }
         stage('Deploy on Kubernetes') {
